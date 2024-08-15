@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.dao.TopicTableMapper">
+  <resultMap id="BaseResultMap" type="org.example.entry.TopicTable">
+    <!--@mbg.generated-->
+    <!--@Table topic_table-->
+    <id column="topic_id" jdbcType="VARCHAR" property="topicId" />
+    <result column="topic_name" jdbcType="LONGVARCHAR" property="topicName" />
+    <result column="chapter_id" jdbcType="VARCHAR" property="chapterId" />
+    <result column="option_id" jdbcType="VARCHAR" property="optionId" />
+    <result column="analysis" jdbcType="LONGVARCHAR" property="analysis" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    topic_id, topic_name, chapter_id, option_id, analysis, image_url, sort
+  </sql>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into topic_table
+    (topic_id, topic_name, chapter_id, option_id, analysis, image_url, sort)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.topicId,jdbcType=VARCHAR}, #{item.topicName,jdbcType=LONGVARCHAR}, #{item.chapterId,jdbcType=VARCHAR}, 
+        #{item.optionId,jdbcType=VARCHAR}, #{item.analysis,jdbcType=LONGVARCHAR}, #{item.imageUrl,jdbcType=VARCHAR}, 
+        #{item.sort,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

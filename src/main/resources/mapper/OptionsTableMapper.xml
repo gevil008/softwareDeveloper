@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.dao.OptionsTableMapper">
+  <resultMap id="BaseResultMap" type="org.example.entry.OptionsTable">
+    <!--@mbg.generated-->
+    <!--@Table options_table-->
+    <id column="option_id" jdbcType="VARCHAR" property="optionId" />
+    <result column="option_name" jdbcType="VARCHAR" property="optionName" />
+    <result column="tppic_id" jdbcType="VARCHAR" property="tppicId" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    option_id, option_name, tppic_id, image_url, sort
+  </sql>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into options_table
+    (option_id, option_name, tppic_id, image_url, sort)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.optionId,jdbcType=VARCHAR}, #{item.optionName,jdbcType=VARCHAR}, #{item.tppicId,jdbcType=VARCHAR}, 
+        #{item.imageUrl,jdbcType=VARCHAR}, #{item.sort,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

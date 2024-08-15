@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.dao.ChapterTableMapper">
+  <resultMap id="BaseResultMap" type="org.example.entry.ChapterTable">
+    <!--@mbg.generated-->
+    <!--@Table chapter_table-->
+    <id column="chapter_id" jdbcType="VARCHAR" property="chapterId" />
+    <result column="chapter_name" jdbcType="VARCHAR" property="chapterName" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    chapter_id, chapter_name, `level`, parent_id, sort
+  </sql>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into chapter_table
+    (chapter_id, chapter_name, `level`, parent_id, sort)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.chapterId,jdbcType=VARCHAR}, #{item.chapterName,jdbcType=VARCHAR}, #{item.level,jdbcType=VARCHAR}, 
+        #{item.parentId,jdbcType=VARCHAR}, #{item.sort,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>
